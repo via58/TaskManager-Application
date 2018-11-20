@@ -1,0 +1,108 @@
+<div class="container">
+<!-- First Row -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding:1%;padding-left:0px;">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <label for="searchTaskName">Task</label>
+            </div>
+            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                <input type="text" class="form-control" style="width:100%" id="searchTaskName" placeholder="Search by Task " name="searchTaskName" [(ngModel)]='searchTaskName'>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding:1%;padding-left:0px;">
+            <div class="col-xs-3  col-sm-3 col-md-3 col-lg-3">
+                <label for="searchParentTask">Parent Task</label>
+            </div>
+            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                <input type="text" id="searchParentTask" name="searchParentTask" class="form-control" [(ngModel)]='searchParentTask' style="width:100%" placeholder="Search by Parent Name">
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- second -->
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding: 1%; padding-left: 0px;">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <label for="priorityFrom">Priority From</label>
+                </div>
+                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                    <input type="number" min="0" max="29" class="form-control" style="width:100%" id="priorityFrom" name="priorityFrom" [(ngModel)]="priorityFrom">
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding-left: 7%;">
+                    <label for="priorityTo">Priority To</label>
+                </div>
+                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                    <input type="number" class="form-control" min="1" max="30" style="width:100%" id="priorityTo" name="priorityTo" [(ngModel)]="priorityTo">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding: 1%; padding-left:0px;">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <label for="searchStartDate">Start date</label>
+                </div>
+                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                    <input type="date" id="searchStartDate" name="searchStartDate" [(ngModel)]='searchStartDate' class="form-control" style="width:100%">
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding-left:7%;">
+                    <label for="searchEndDate">End date</label>
+                </div>
+                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                    <input type="date" id="searchEndDate" name="searchEndDate" [(ngModel)]='searchEndDate' class="form-control" style="width:100%">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr style="border-top:dotted 1px"/>
+    
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Parent</th>
+                <th>Priority</th>
+                <th>start date</th>
+                <th>End date</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let task of listTask | taskFilter:searchTaskName:searchParentTask:searchStartDate:searchEndDate:priorityFrom:priorityTo">
+                <td ><label >{{task.task}}</label></td>
+                <td><label >{{task.parent_task}}</label></td>
+                <td>{{task.C_priority }}</td>
+                <td>{{task.C_start_date|date }}</td>
+                <td >{{task.C_end_date |date}}</td>
+                <td>
+                <button type="button" class="btn btn-default"  (click)='handleUpdate(task.task_id)' >Edit</button>
+                </td>
+                <td>
+                    
+                    <button type="button" class="btn btn-default" (click)='removeTask(task.task_id)' >End Task</button>
+                </td>
+                <td>
+                        
+                </td>
+                
+            </tr>
+           
+        </tbody>
+    </table>
+      
+</div>
+
+
+
+
+
+
+

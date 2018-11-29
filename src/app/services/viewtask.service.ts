@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class ViewtaskService {
-private _url:string='http://localhost:54548/api/Task_table';
+private _url:string='http://localhost/TManagerService/Task';
   constructor(private _http:HttpClient) { }
   getAllTasks():Observable<ITasks[]>{
     return this._http.get<ITasks[]>(this._url)

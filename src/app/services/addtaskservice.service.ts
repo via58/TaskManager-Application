@@ -7,7 +7,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AddtaskserviceService {
 
-  private _url='http://localhost:54548/api/Task_table';
+  private _url='http://localhost/TManagerService/Task';
   constructor(private _http:HttpClient) {
   }
     enroll(taskinfo:TaskDetails){
